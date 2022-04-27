@@ -63,7 +63,7 @@ app.put("/quotes/:id", async (req, res) => {
   }
 });
 // Send a DELETE request to /quotes/:id to DELETE a quote
-app.delete("/quote/:id", async (req, res) => {
+app.delete("/quotes/:id", async (req, res) => {
   try {
     const quote = await records.getQuote(req.params.id);
     await records.deleteQuote(quote);
