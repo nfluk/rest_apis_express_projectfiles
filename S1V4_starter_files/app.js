@@ -9,11 +9,18 @@ app.get("/quotes", async (req, res) => {
   res.json(quotes);
 });
 // Send a GET request to /quotes/:id to READ (view) a quote
-app.get("/quotes/:id", (req, res) => {
-  const quote = records.getQuote(req.params.id);
+app.get("/quotes/:id", async (req, res) => {
+  const quote = await records.getQuote(req.params.id);
   res.json(quote);
 });
 // Send a POST request to /quotes to CREATE a quote
+app.post("/quotes", (req, res) => {
+  const quote = records.createQuote({
+    quote: req.body.quote,
+    author: req.body.author,
+  });
+  res.json(quote);
+});
 // Send a PUT request to /quotes/:id to UPDATE a quote
 // Send a DELETE request to /quotes/:id to DELETE a quote
 // Send a GET request to /quotes/quote/random to READ (view) a random quote
